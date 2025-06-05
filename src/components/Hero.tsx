@@ -128,10 +128,10 @@ export function Hero() {
             <Button
               size="lg"
               onClick={() => scrollToSection("projects")}
-              className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white px-8 py-6 text-lg group"
+              className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white border-0 shadow-lg hover:shadow-xl px-8 py-6 text-lg group transition-all duration-300"
             >
-              <Eye className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              View Projects
+              <Eye className="mr-2 h-5 w-5 text-white group-hover:scale-110 transition-transform" />
+              <span className="text-white font-medium">View Projects</span>
             </Button>
             
             <Button
