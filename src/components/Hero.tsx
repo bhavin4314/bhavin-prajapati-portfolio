@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Eye, Mail, Github, Linkedin } from "lucide-react"
-import { ThreeJSHero } from "./ThreeJSHero"
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("")
@@ -46,11 +45,13 @@ export function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Three.js Background */}
-      <ThreeJSHero />
+      {/* Enhanced Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-background -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-purple-500/5 to-blue-500/5 -z-10" />
       
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-background/90 -z-5" />
+      {/* Animated Background Elements */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
       <div className="container mx-auto px-4 text-center relative z-10">
         <motion.div
