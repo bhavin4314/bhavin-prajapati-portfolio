@@ -17,14 +17,14 @@ export function LoadingSpinner() {
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         />
-        <motion.p
+        {/* <motion.p
           className="text-lg font-semibold text-muted-foreground"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           Loading Portfolio...
-        </motion.p>
+        </motion.p> */}
       </div>
     </motion.div>
   )
