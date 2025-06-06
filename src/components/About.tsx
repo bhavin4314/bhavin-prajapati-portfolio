@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Calendar, Coffee, Heart } from "lucide-react"
+import { MapPin, Calendar, Coffee, Code } from "lucide-react"
 
 export function About() {
   const ref = useRef(null)
@@ -13,8 +13,8 @@ export function About() {
 
   const stats = [
     { label: "Years Experience", value: "3+", icon: Calendar },
-    { label: "Projects Completed", value: "15+", icon: Coffee },
-    { label: "Happy Clients", value: "10+", icon: Heart },
+    { label: "Projects Completed", value: "6", icon: Coffee },
+    { label: "Tech Stack", value: "React+", icon: Code },
   ]
 
   return (

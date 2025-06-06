@@ -36,14 +36,14 @@ export function Projects() {
     {
       id: 2,
       title: "On-Demand Service Connection",
-      description: "B2B platform for factories, schools, clinics to hire service providers.",
-      fullDescription: "Comprehensive B2B marketplace connecting service providers with institutions. Features advanced quotation systems, real-time notifications, and seamless integration with mapping services for location-based matching.",
+      description: "B2B and B2C platform connecting service providers with businesses and individual customers.",
+      fullDescription: "Comprehensive marketplace serving both B2B and B2C audiences, connecting service providers with factories, schools, clinics, and individual customers. The platform features advanced quotation systems, real-time notifications, and seamless integration with mapping services for location-based matching across different customer segments.",
       highlights: [
+        "Dual B2B and B2C marketplace",
         "Quotation system with approval workflows",
         "Firebase real-time notifications",
         "Google Maps integration",
-        "RTL design support",
-        "Reusable component library"
+        "Multi-tenant architecture for different customer types"
       ],
       tech: ["React.js", "Redux", "Reactstrap", "Google Maps API", "Firebase"],
       gradient: "from-green-500 to-emerald-500",
@@ -52,14 +52,28 @@ export function Projects() {
     {
       id: 3,
       title: "Smart Recruitment Platform",
-      description: "A job-matching platform for companies and job seekers with AI-powered matching.",
-      fullDescription: "Intelligent recruitment platform leveraging AI for optimal job-candidate matching. Features real-time communication, comprehensive analytics, and advanced role-based access control for streamlined hiring processes.",
+      description: "AI-powered job-matching platform with career tools and direct employer connections.",
+      fullDescription: "Intelligent recruitment platform featuring comprehensive career assessment tools and AI-powered matching. The platform offers three main value propositions for job seekers and employers.",
       highlights: [
-        "Real-time chat with Socket.io",
-        "AI-powered job matching",
-        "Role-based access control",
-        "SEO optimization",
-        "Mixpanel analytics integration"
+        "Career assessment tools (Test my match®, Discover strengths, MBTI personality test)",
+        "Smart job matching with instant qualification feedback",
+        "Direct employer communication via JobFunders",
+        "Privacy-first approach with user-controlled data sharing",
+        "No third-party recruiters - direct connections only"
+      ],
+      details: [
+        {
+          title: "Short career workouts",
+          description: "Introduce users to tools like Test my match®, Discover my strengths, Where do I feel at home?, Explore my ambitions, CV builder, or MBTI personality test. These tools help users identify suitable jobs and career paths based on their personality, competencies, and preferences."
+        },
+        {
+          title: "Smart job matches and direct feedback", 
+          description: "Users receive personalized job suggestions and can apply directly via the platform. The system provides instant feedback on whether they qualify for a role, improving transparency and confidence."
+        },
+        {
+          title: "Direct contact with employers",
+          description: "Users can connect with employers directly via JobFunders—no third-party recruiters involved. They can chat, schedule interviews, and negotiate terms directly with employers. Data privacy is maintained, and users choose what to share."
+        }
       ],
       tech: ["Next.js", "Reactstrap", "Firebase", "React Context", "Socket.io", "Mixpanel"],
       gradient: "from-purple-500 to-pink-500",
@@ -170,23 +184,37 @@ export function Projects() {
                         {selectedProject.fullDescription}
                       </p>
                       
-                      <div>
-                        <h4 className="font-semibold text-lg mb-3">Key Features</h4>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                          {selectedProject.highlights.map((highlight: string, index: number) => (
-                            <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="flex items-center space-x-2 text-muted-foreground"
-                            >
-                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${selectedProject.gradient}`} />
-                              <span>{highlight}</span>
-                            </motion.li>
+                      {selectedProject.details && (
+                        <div className="space-y-4">
+                          <h4 className="font-semibold text-lg mb-3">Key Features</h4>
+                          {selectedProject.details.map((detail: any, index: number) => (
+                            <div key={index} className="border-l-4 border-primary/30 pl-4 space-y-2">
+                              <h5 className="font-semibold text-base">{detail.title}</h5>
+                              <p className="text-muted-foreground">{detail.description}</p>
+                            </div>
                           ))}
-                        </ul>
-                      </div>
+                        </div>
+                      )}
+                      
+                      {selectedProject.highlights && !selectedProject.details && (
+                        <div>
+                          <h4 className="font-semibold text-lg mb-3">Key Features</h4>
+                          <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            {selectedProject.highlights.map((highlight: string, index: number) => (
+                              <motion.li
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                className="flex items-center space-x-2 text-muted-foreground"
+                              >
+                                <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${selectedProject.gradient}`} />
+                                <span>{highlight}</span>
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       
                       <div>
                         <h4 className="font-semibold text-lg mb-3">Technologies Used</h4>

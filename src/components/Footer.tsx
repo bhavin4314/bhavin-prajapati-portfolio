@@ -36,17 +36,31 @@ export function Footer() {
 
           {/* Social Links & Theme Toggle */}
           <div className="flex items-center gap-4">
-            <Button size="icon" variant="ghost" asChild>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <Github className="h-5 w-5" />
-              </a>
-            </Button>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button size="icon" variant="ghost" asChild>
+                <a 
+                  href="https://github.com/bhavin4314" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:bg-foreground hover:text-background transition-colors duration-300"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+              </Button>
+            </motion.div>
             
-            <Button size="icon" variant="ghost" asChild>
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </Button>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button size="icon" variant="ghost" asChild>
+                <a 
+                  href="https://www.linkedin.com/in/bhavin-prajapati-2477b5213" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </Button>
+            </motion.div>
 
             {/* Theme Toggle */}
             <div className="flex items-center space-x-2 ml-4">

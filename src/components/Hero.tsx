@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, Download, Mail, Eye } from "lucide-react"
+import { ChevronDown, Eye, Mail } from "lucide-react"
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("")
@@ -125,33 +125,34 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Button
-              size="lg"
-              onClick={() => scrollToSection("projects")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg group shadow-lg hover:shadow-xl transition-all duration-300"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Eye className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              View Projects
-            </Button>
+              <Button
+                size="lg"
+                onClick={() => scrollToSection("projects")}
+                className="bg-foreground text-background hover:bg-foreground/90 px-8 py-6 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                <Eye className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                View Projects
+              </Button>
+            </motion.div>
             
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => scrollToSection("contact")}
-              className="px-8 py-6 text-lg border-2 hover:bg-primary hover:text-primary-foreground group"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              Contact Me
-            </Button>
-            
-            <Button
-              size="lg"
-              variant="ghost"
-              className="px-8 py-6 text-lg hover:bg-primary/10 group"
-            >
-              <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              Download Resume
-            </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => scrollToSection("contact")}
+                className="px-8 py-6 text-lg font-medium rounded-xl border-2 border-foreground/20 hover:border-foreground/40 hover:bg-foreground/5 transition-all duration-300 group"
+              >
+                <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                Let's Talk
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
 

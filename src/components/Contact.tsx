@@ -10,25 +10,42 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/hooks/use-toast"
-import { Github, Linkedin, Mail, Send } from "lucide-react"
+import { Github, Linkedin, Mail, Send, Loader2 } from "lucide-react"
 
 export function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    toast({
-      title: "Message sent successfully! 🎉",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    })
-    setFormData({ name: "", email: "", message: "" })
+    setIsLoading(true)
+    
+    try {
+      // EmailJS integration will be implemented here
+      // For now, simulate the email sending process
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      
+      toast({
+        title: "Message sent successfully! 🎉",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      })
+      
+      setFormData({ name: "", email: "", message: "" })
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -80,16 +97,30 @@ export function Contact() {
               </div>
 
               <div className="flex gap-4">
-                <Button size="icon" variant="outline" asChild>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
-                    <Github className="h-5 w-5" />
-                  </a>
-                </Button>
-                <Button size="icon" variant="outline" asChild>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                </Button>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Button size="icon" variant="outline" asChild>
+                    <a 
+                      href="https://github.com/bhavin4314" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:bg-foreground hover:text-background transition-colors duration-300"
+                    >
+                      <Github className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Button size="icon" variant="outline" asChild>
+                    <a 
+                      href="https://www.linkedin.com/in/bhavin-prajapati-2477b5213" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                    >
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -112,6 +143,7 @@ export function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         className="border-2 focus:border-primary transition-colors"
                       />
                     </div>
@@ -124,6 +156,7 @@ export function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         className="border-2 focus:border-primary transition-colors"
                       />
                     </div>
@@ -135,6 +168,7 @@ export function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         rows={5}
                         className="border-2 focus:border-primary transition-colors resize-none"
                       />
@@ -142,11 +176,21 @@ export function Contact() {
                     
                     <Button 
                       type="submit" 
-                      className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90"
+                      disabled={isLoading}
+                      className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 disabled:opacity-70"
                       size="lg"
                     >
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
