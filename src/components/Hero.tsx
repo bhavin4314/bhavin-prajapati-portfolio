@@ -4,7 +4,8 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, Eye, Mail } from "lucide-react"
+import { ChevronDown, Eye, Mail, Github, Linkedin } from "lucide-react"
+import { ThreeJSHero } from "./ThreeJSHero"
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("")
@@ -45,36 +46,13 @@ export function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Animation */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background" />
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </div>
+      {/* Three.js Background */}
+      <ThreeJSHero />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/70 to-background/90 -z-5" />
 
-      <div className="container mx-auto px-4 text-center">
+      <div className="container mx-auto px-4 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -119,40 +97,63 @@ export function Hero() {
             with modern technologies and best practices.
           </motion.p>
 
+          {/* Modern Action Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
                 onClick={() => scrollToSection("projects")}
-                className="bg-foreground text-background hover:bg-foreground/90 px-8 py-6 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground px-8 py-6 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <Eye className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                View Projects
+                View My Work
               </Button>
             </motion.div>
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => scrollToSection("contact")}
-                className="px-8 py-6 text-lg font-medium rounded-xl border-2 border-foreground/20 hover:border-foreground/40 hover:bg-foreground/5 transition-all duration-300 group"
+                className="px-8 py-6 text-lg font-medium rounded-xl border-2 border-primary/30 hover:border-primary/60 hover:bg-primary/10 backdrop-blur-sm transition-all duration-300 group"
               >
                 <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Let's Talk
+                Get In Touch
               </Button>
             </motion.div>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            className="flex gap-4 justify-center items-center mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+          >
+            <motion.a
+              href="https://github.com/bhavin4314"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              className="p-3 rounded-full bg-muted/50 hover:bg-foreground hover:text-background transition-all duration-300 backdrop-blur-sm border border-border/50"
+            >
+              <Github className="h-5 w-5" />
+            </motion.a>
+            
+            <motion.a
+              href="https://www.linkedin.com/in/bhavin-prajapati-2477b5213"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              className="p-3 rounded-full bg-muted/50 hover:bg-blue-600 hover:text-white transition-all duration-300 backdrop-blur-sm border border-border/50"
+            >
+              <Linkedin className="h-5 w-5" />
+            </motion.a>
           </motion.div>
         </motion.div>
 
