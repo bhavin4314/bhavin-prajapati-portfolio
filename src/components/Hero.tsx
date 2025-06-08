@@ -1,57 +1,69 @@
+"use client";
 
-"use client"
-
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ChevronDown, Eye, Mail, Github, Linkedin } from "lucide-react"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, Eye, Mail, Github, Linkedin } from "lucide-react";
 
 export function Hero() {
-  const [displayText, setDisplayText] = useState("")
-  const [currentIndex, setCurrentIndex] = useState(0)
-  
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const texts = [
     "Frontend Web Developer",
-    "React Specialist", 
+    "React Specialist",
     "UI/UX Enthusiast",
-    "Problem Solver"
-  ]
+    "Problem Solver",
+  ];
 
   useEffect(() => {
-    const currentText = texts[currentIndex]
-    let charIndex = 0
-    
+    const currentText = texts[currentIndex];
+    let charIndex = 0;
+
     const typeWriter = setInterval(() => {
       if (charIndex <= currentText.length) {
-        setDisplayText(currentText.slice(0, charIndex))
-        charIndex++
+        setDisplayText(currentText.slice(0, charIndex));
+        charIndex++;
       } else {
-        clearInterval(typeWriter)
+        clearInterval(typeWriter);
         setTimeout(() => {
-          setCurrentIndex((prev) => (prev + 1) % texts.length)
-        }, 2000)
+          setCurrentIndex((prev) => (prev + 1) % texts.length);
+        }, 2000);
       }
-    }, 100)
+    }, 100);
 
-    return () => clearInterval(typeWriter)
-  }, [currentIndex])
+    return () => clearInterval(typeWriter);
+  }, [currentIndex]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
+
+  const resumeDownloadHandler = () => {
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Bhavin_Prajapati_Resume.pdf";
+    link.click();
+  };
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col justify-center relative overflow-hidden">
+    <section
+      id="hero"
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
+    >
       {/* Enhanced Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-background -z-10" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-purple-500/5 to-blue-500/5 -z-10" />
-      
+
       {/* Animated Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+        style={{ animationDelay: "1s" }}
+      />
 
       {/* Main Content - takes up most of the space */}
       <div className="flex-1 flex items-center justify-center">
@@ -107,18 +119,24 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Button
                   size="lg"
-                  onClick={() => scrollToSection("projects")}
+                  onClick={resumeDownloadHandler}
                   className="bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-primary-foreground px-8 py-6 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
                   <Eye className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                  View My Work
+                  My Resume
                 </Button>
               </motion.div>
-              
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Button
                   size="lg"
                   variant="outline"
@@ -147,7 +165,7 @@ export function Hero() {
               >
                 <Github className="h-5 w-5" />
               </motion.a>
-              
+
               <motion.a
                 href="https://www.linkedin.com/in/bhavin-prajapati-2477b5213"
                 target="_blank"
@@ -161,7 +179,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
       {/* Scroll Indicator - positioned in the bottom section */}
       <div className="h-20 flex items-center justify-center relative z-10">
         <motion.div
@@ -180,5 +197,5 @@ export function Hero() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

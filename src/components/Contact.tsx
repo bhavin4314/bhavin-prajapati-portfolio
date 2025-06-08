@@ -1,59 +1,76 @@
+"use client";
 
-"use client"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { toast } from "@/hooks/use-toast"
-import { Github, Linkedin, Mail, Send, Loader2 } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
+import { Github, Linkedin, Mail, Send, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [isLoading, setIsLoading] = useState(false)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
-  })
+    message: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    
+    e.preventDefault();
+    setIsLoading(true);
+
     try {
-      // EmailJS integration will be implemented here
-      // For now, simulate the email sending process
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      toast({
-        title: "Message sent successfully! 🎉",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      })
-      
-      setFormData({ name: "", email: "", message: "" })
+      await emailjs
+        .send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          formData,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          () => {
+            toast({
+              title: "Message sent successfully! 🎉",
+              description:
+                "Thank you for reaching out. I'll get back to you soon.",
+            });
+          },
+          (error) => {
+            toast({
+              title: "Failed to send message",
+              description: "Please try again or contact me directly via email.",
+              variant: "destructive",
+            });
+          }
+        );
+
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       toast({
         title: "Failed to send message",
         description: "Please try again or contact me directly via email.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
@@ -82,10 +99,13 @@ export function Contact() {
               className="space-y-6"
             >
               <div>
-                <h3 className="text-2xl font-semibold mb-4">Let's work together</h3>
+                <h3 className="text-2xl font-semibold mb-4">
+                  Let's work together
+                </h3>
                 <p className="text-muted-foreground text-lg">
-                  I'm always interested in hearing about new opportunities and exciting projects. 
-                  Whether you have a question or just want to say hi, feel free to reach out!
+                  I'm always interested in hearing about new opportunities and
+                  exciting projects. Whether you have a question or just want to
+                  say hi, feel free to reach out!
                 </p>
               </div>
 
@@ -97,11 +117,14 @@ export function Contact() {
               </div>
 
               <div className="flex gap-4">
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button size="icon" variant="outline" asChild>
-                    <a 
-                      href="https://github.com/bhavin4314" 
-                      target="_blank" 
+                    <a
+                      href="https://github.com/bhavin4314"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="hover:bg-foreground hover:text-background transition-colors duration-300"
                     >
@@ -109,11 +132,14 @@ export function Contact() {
                     </a>
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button size="icon" variant="outline" asChild>
-                    <a 
-                      href="https://www.linkedin.com/in/bhavin-prajapati-2477b5213" 
-                      target="_blank" 
+                    <a
+                      href="https://www.linkedin.com/in/bhavin-prajapati-2477b5213"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="hover:bg-blue-600 hover:text-white transition-colors duration-300"
                     >
@@ -147,7 +173,7 @@ export function Contact() {
                         className="border-2 focus:border-primary transition-colors"
                       />
                     </div>
-                    
+
                     <div>
                       <Input
                         name="email"
@@ -160,7 +186,7 @@ export function Contact() {
                         className="border-2 focus:border-primary transition-colors"
                       />
                     </div>
-                    
+
                     <div>
                       <Textarea
                         name="message"
@@ -173,9 +199,9 @@ export function Contact() {
                         className="border-2 focus:border-primary transition-colors resize-none"
                       />
                     </div>
-                    
-                    <Button 
-                      type="submit" 
+
+                    <Button
+                      type="submit"
                       disabled={isLoading}
                       className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 disabled:opacity-70"
                       size="lg"
@@ -200,5 +226,5 @@ export function Contact() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
