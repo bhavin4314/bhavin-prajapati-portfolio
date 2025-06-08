@@ -13,8 +13,8 @@ export function About() {
 
   const stats = [
     { label: "Years Experience", value: "3+", icon: Calendar },
-    { label: "Projects Completed", value: "6", icon: Coffee },
-    { label: "Tech Stack", value: "React+", icon: Code },
+    { label: "Projects Completed", value: "6+", icon: Coffee },
+    // { label: "Tech Stack", value: "React+", icon: Code },
   ]
 
   return (
@@ -55,7 +55,7 @@ export function About() {
                   >
                     <div className="flex items-center gap-3 text-primary mb-6">
                       <MapPin className="h-5 w-5" />
-                      <span className="font-semibold">Gandhinagar, India</span>
+                      <span className="font-semibold">Ahmedabad, India</span>
                     </div>
                     
                     <motion.p

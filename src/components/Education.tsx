@@ -1,24 +1,44 @@
+"use client";
 
-"use client"
-
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { GraduationCap, MapPin, Calendar, Award, ChevronRight, Trophy, Book, Users } from "lucide-react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  GraduationCap,
+  MapPin,
+  Calendar,
+  Award,
+  ChevronRight,
+  Trophy,
+  Book,
+  Users,
+} from "lucide-react";
 
 export function Education() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [isExpanded, setIsExpanded] = useState(false)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const achievements = [
-    { icon: Trophy, title: "First Class Honors", description: "Graduated with distinction" },
-    { icon: Book, title: "Dean's List", description: "Academic excellence recognition" },
-    { icon: Users, title: "Technical Society", description: "Active member of coding clubs" }
-  ]
+    {
+      icon: Trophy,
+      title: "First Class Honors",
+      description: "Graduated with distinction",
+    },
+    {
+      icon: Book,
+      title: "Dean's List",
+      description: "Academic excellence recognition",
+    },
+    {
+      icon: Users,
+      title: "Technical Society",
+      description: "Active member of coding clubs",
+    },
+  ];
 
   const subjects = [
     "Data Structures & Algorithms",
@@ -26,15 +46,18 @@ export function Education() {
     "Database Management",
     "Computer Networks",
     "Web Technologies",
-    "Object-Oriented Programming"
-  ]
+    "Object-Oriented Programming",
+  ];
 
   return (
-    <section id="education" className="py-20 bg-gradient-to-br from-background via-muted/10 to-background relative overflow-hidden">
+    <section
+      id="education"
+      className="py-20 bg-gradient-to-br from-background via-muted/10 to-background relative overflow-hidden"
+    >
       {/* Background decorations */}
       <div className="absolute top-0 right-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
@@ -43,7 +66,7 @@ export function Education() {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12"
             initial={{ y: 20, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -70,13 +93,22 @@ export function Education() {
                       <motion.div
                         className="p-4 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-2xl"
                         initial={{ scale: 0, rotate: -180 }}
-                        animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                        transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 200 }}
+                        animate={
+                          isInView
+                            ? { scale: 1, rotate: 0 }
+                            : { scale: 0, rotate: -180 }
+                        }
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.5,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                       >
                         <GraduationCap className="h-8 w-8 text-primary" />
                       </motion.div>
-                      
+
                       <div className="flex-1">
                         <CardTitle className="text-2xl md:text-3xl mb-3 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
                           B.E. in Computer Engineering
@@ -84,16 +116,16 @@ export function Education() {
                         <p className="text-xl text-primary font-semibold mb-4">
                           Government Engineering College, Gandhinagar
                         </p>
-                        
+
                         <div className="flex flex-col lg:flex-row gap-4 text-muted-foreground mb-6">
-                          <motion.div 
+                          <motion.div
                             className="flex items-center gap-2"
                             whileHover={{ scale: 1.05 }}
                           >
                             <MapPin className="h-4 w-4" />
                             <span>Gandhinagar, India</span>
                           </motion.div>
-                          <motion.div 
+                          <motion.div
                             className="flex items-center gap-2"
                             whileHover={{ scale: 1.05 }}
                           >
@@ -102,15 +134,21 @@ export function Education() {
                           </motion.div>
                         </div>
 
-                        <motion.div 
+                        <motion.div
                           className="flex flex-wrap items-center gap-3"
                           initial={{ y: 20, opacity: 0 }}
-                          animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                          animate={
+                            isInView
+                              ? { y: 0, opacity: 1 }
+                              : { y: 20, opacity: 0 }
+                          }
                           transition={{ duration: 0.8, delay: 0.7 }}
                         >
                           <div className="flex items-center gap-2">
                             <Award className="h-5 w-5 text-yellow-600" />
-                            <span className="font-semibold text-foreground text-lg">CGPA: 8.91 / 10</span>
+                            <span className="font-semibold text-foreground text-lg">
+                              CGPA: 8.91 / 10
+                            </span>
                           </div>
                           <Badge className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-700 border-green-500/30 px-3 py-1 text-sm font-medium">
                             🏆 Distinction
@@ -121,8 +159,8 @@ export function Education() {
                   </CardHeader>
                 </div>
 
-                <CardContent className="p-6">
-                  <motion.p
+                {/* <CardContent className="p-6"> */}
+                {/* <motion.p
                     className="text-muted-foreground leading-relaxed mb-6 text-lg"
                     initial={{ y: 20, opacity: 0 }}
                     animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
@@ -131,10 +169,10 @@ export function Education() {
                     Completed Bachelor's degree in Computer Engineering with distinction, 
                     gaining strong foundation in software development, algorithms, data structures, 
                     and modern web technologies that form the basis of my professional career.
-                  </motion.p>
+                  </motion.p> */}
 
-                  {/* Achievements Grid */}
-                  <motion.div 
+                {/* Achievements Grid */}
+                {/* <motion.div 
                     className="grid md:grid-cols-3 gap-4 mb-6"
                     initial={{ y: 30, opacity: 0 }}
                     animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
@@ -154,10 +192,10 @@ export function Education() {
                         <p className="text-xs text-muted-foreground">{achievement.description}</p>
                       </motion.div>
                     ))}
-                  </motion.div>
+                  </motion.div> */}
 
-                  {/* Expandable Section */}
-                  <motion.div
+                {/* Expandable Section */}
+                {/* <motion.div
                     initial={false}
                     animate={{ height: isExpanded ? "auto" : 0 }}
                     className="overflow-hidden"
@@ -178,10 +216,10 @@ export function Education() {
                         ))}
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.div> */}
 
-                  {/* Toggle Button */}
-                  <motion.div 
+                {/* Toggle Button */}
+                {/* <motion.div 
                     className="flex justify-center mt-6"
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -202,13 +240,13 @@ export function Education() {
                         <ChevronRight className="h-4 w-4 group-hover:scale-110 transition-transform" />
                       </motion.div>
                     </Button>
-                  </motion.div>
-                </CardContent>
+                  </motion.div> */}
+                {/* </CardContent> */}
               </Card>
             </motion.div>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

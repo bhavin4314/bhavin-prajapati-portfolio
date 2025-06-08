@@ -99,3 +99,69 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes pulse-scale {
+    to {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
+
+  .animate-pulse-scale {
+    display: inline-block;
+    animation: pulse-scale 0.4s alternate infinite ease-in-out;
+  }
+}
+
+@layer utilities {
+  .dots {
+    width: 13.4px;
+    height: 13.4px;
+    border-radius: 9999px;
+    box-shadow: 22.4px 0, -22.4px 0;
+    animation: dots-spin 1s infinite linear alternate;
+    background-color: #0a152f; /* fallback for light mode */
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .dots {
+      background-color: #f8fafc;
+      box-shadow: 22.4px 0, -22.4px 0;
+    }
+  }
+
+  @keyframes dots-spin {
+    0% {
+      box-shadow: 22.4px 0, -22.4px 0;
+    }
+
+    33% {
+      box-shadow: 22.4px 0, -22.4px 0 rgba(10, 21, 47, 0.13);
+      background-color: rgba(10, 21, 47, 0.13);
+    }
+
+    66% {
+      box-shadow: 22.4px 0 rgba(10, 21, 47, 0.13), -22.4px 0;
+      background-color: rgba(10, 21, 47, 0.13);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @keyframes dots-spin {
+      0% {
+        box-shadow: 22.4px 0, -22.4px 0;
+      }
+
+      33% {
+        box-shadow: 22.4px 0, -22.4px 0 rgba(248, 250, 252, 0.13);
+        background-color: rgba(248, 250, 252, 0.13);
+      }
+
+      66% {
+        box-shadow: 22.4px 0 rgba(248, 250, 252, 0.13), -22.4px 0;
+        background-color: rgba(248, 250, 252, 0.13);
+      }
+    }
+  }
+}
