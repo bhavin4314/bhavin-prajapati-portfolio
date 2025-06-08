@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -76,35 +75,20 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Enhanced Logo with geometric design */}
+          {/* Logo with enhanced animation */}
           <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="relative group cursor-pointer"
-            onClick={() => scrollToSection("hero")}
+            className="relative"
           >
-            <div className="relative">
-              {/* Outer geometric frame */}
-              <div className="absolute -inset-3 bg-gradient-to-r from-primary/20 via-purple-600/20 to-blue-600/20 rounded-xl rotate-45 blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {/* Inner geometric border */}
-              <div className="relative w-12 h-12 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-purple-600/30 rounded-lg border border-primary/40 group-hover:border-primary/60 transition-all duration-300" />
-                <div className="absolute inset-1 bg-background/80 backdrop-blur-sm rounded-md" />
-                
-                {/* The B letter */}
-                <span className="relative text-2xl font-bold bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent z-10">
-                  B
-                </span>
-              </div>
-              
-              {/* Animated glow effect */}
-              <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-purple-600/10 rounded-xl blur-md opacity-0"
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
+            <div className="text-3xl font-bold bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+              BP
             </div>
+            <motion.div
+              className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-purple-600/20 rounded-lg blur opacity-0"
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
           </motion.div>
 
           {/* Desktop Navigation with glassmorphism */}
