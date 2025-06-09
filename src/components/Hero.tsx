@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Eye, Mail, Github, Linkedin, Code, Palette, Zap } from "lucide-react";
+import { TechIconsAnimation } from "./TechIconsAnimation";
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("");
@@ -59,19 +60,11 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-background -z-10" />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-purple-500/5 to-blue-500/5 -z-10" />
 
-      {/* Animated Background Elements - More Distributed */}
+      {/* Animated Background Elements */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-primary/8 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl animate-pulse"
         style={{ animationDelay: "1s" }}
-      />
-      <div
-        className="absolute top-1/3 right-1/4 w-48 h-48 bg-blue-500/6 rounded-full blur-2xl animate-pulse"
-        style={{ animationDelay: "2s" }}
-      />
-      <div
-        className="absolute bottom-1/3 left-1/4 w-56 h-56 bg-green-500/6 rounded-full blur-2xl animate-pulse"
-        style={{ animationDelay: "0.5s" }}
       />
 
       {/* Floating Code Elements */}
@@ -91,22 +84,6 @@ export function Hero() {
           <Code className="h-16 w-16 text-primary" />
         </motion.div>
         
-        <motion.div
-          className="absolute top-1/3 right-1/6 opacity-10"
-          animate={{
-            y: [0, 20, 0],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        >
-          <Palette className="h-12 w-12 text-purple-500" />
-        </motion.div>
-
         <motion.div
           className="absolute bottom-1/4 left-1/5 opacity-10"
           animate={{
@@ -241,85 +218,14 @@ export function Hero() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Visual Stats/Skills Preview */}
+            {/* Right Column - Animated Tech Icons */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
               className="hidden lg:block"
             >
-              <div className="relative">
-                {/* Central Circle */}
-                <motion.div
-                  className="relative w-80 h-80 mx-auto"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 1, delay: 1 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-xl" />
-                  <div className="relative w-full h-full bg-gradient-to-br from-muted/80 to-muted/40 rounded-full backdrop-blur-sm border border-border/50 flex items-center justify-center">
-                    <div className="text-center">
-                      <motion.div
-                        className="text-4xl font-bold text-primary mb-2"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.5 }}
-                      >
-                        3+
-                      </motion.div>
-                      <motion.div
-                        className="text-sm text-muted-foreground"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1.7 }}
-                      >
-                        Years Experience
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Floating Skill Bubbles */}
-                <motion.div
-                  className="absolute -top-4 -left-4 bg-background/80 backdrop-blur-sm border border-border/50 rounded-xl px-4 py-2 shadow-lg"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.2 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-sm font-medium">React</span>
-                </motion.div>
-
-                <motion.div
-                  className="absolute -top-8 right-8 bg-background/80 backdrop-blur-sm border border-border/50 rounded-xl px-4 py-2 shadow-lg"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.4 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-sm font-medium">TypeScript</span>
-                </motion.div>
-
-                <motion.div
-                  className="absolute bottom-8 -left-8 bg-background/80 backdrop-blur-sm border border-border/50 rounded-xl px-4 py-2 shadow-lg"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.6 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-sm font-medium">Tailwind</span>
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-4 right-4 bg-background/80 backdrop-blur-sm border border-border/50 rounded-xl px-4 py-2 shadow-lg"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.8 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-sm font-medium">Next.js</span>
-                </motion.div>
-              </div>
+              <TechIconsAnimation />
             </motion.div>
           </div>
         </div>
