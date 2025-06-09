@@ -87,7 +87,7 @@ export function Hero() {
             </motion.h1>
 
             <motion.div
-              className="text-xl md:text-3xl lg:text-4xl font-semibold mb-4 h-12 flex items-center justify-center"
+              className="text-xl md:text-3xl lg:text-4xl font-semibold mb-6 h-12 flex items-center justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -178,9 +178,8 @@ export function Hero() {
             </motion.div>
           </motion.div>
         </div>
-      </div>
       {/* Scroll Indicator - positioned in the bottom section */}
-      <div className="h-20 flex items-center justify-center relative z-10">
+      <div className="h-20 flex items-center justify-center absolute bottom-0  z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -195,6 +194,7 @@ export function Hero() {
             <ChevronDown className="h-8 w-8 text-muted-foreground hover:text-primary transition-colors" />
           </motion.div>
         </motion.div>
+      </div>
       </div>
     </section>
   );

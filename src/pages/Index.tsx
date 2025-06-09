@@ -53,9 +53,6 @@ const Index = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <AnimatePresence mode="wait">
-        {isLoading ? (
-          <LoadingSpinner key="loading" />
-        ) : (
           <motion.div
             key="content"
             variants={pageVariants}
@@ -106,7 +103,6 @@ const Index = () => {
               <Footer />
             </motion.div>
           </motion.div>
-        )}
       </AnimatePresence>
     </div>
   )
