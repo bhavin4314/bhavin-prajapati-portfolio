@@ -1,11 +1,10 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Eye, Mail, Github, Linkedin } from "lucide-react";
-import { InteractiveTechEcosystem } from "./InteractiveTechEcosystem";
+import { ModernInteractiveDesign } from "./ModernInteractiveDesign";
 
 export function Hero() {
   const [displayText, setDisplayText] = useState("");
@@ -182,14 +181,14 @@ export function Hero() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Interactive SVG */}
+            {/* Right Column - Modern Interactive Design */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
               className="flex justify-center lg:justify-end"
             >
-              <InteractiveTechEcosystem />
+              <ModernInteractiveDesign />
             </motion.div>
           </div>
         </div>
