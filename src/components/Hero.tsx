@@ -1,19 +1,20 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ChevronDown, Eye, Mail, Github, Linkedin } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { ChevronDown, Eye, Mail, Github, Linkedin } from 'lucide-react';
+import { getExperienceYears } from '@/lib/utils';
 
 export function Hero() {
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const texts = [
-    "Frontend Web Developer",
-    "React Specialist",
-    "UI/UX Enthusiast",
-    "Problem Solver",
+    'Frontend Web Developer',
+    'React Specialist',
+    'UI/UX Enthusiast',
+    'Problem Solver',
   ];
 
   useEffect(() => {
@@ -38,15 +39,16 @@ export function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const resumeDownloadHandler = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Bhavin_Prajapati_Resume.pdf";
-    link.click();
+    window.open(
+      'https://drive.google.com/file/d/1nh6g0uoIHtryL4EgkUFzWXL_beDdFX8-/view?usp=sharing',
+      '_blank',
+      'noopener,noreferrer',
+    );
   };
 
   return (
@@ -62,7 +64,7 @@ export function Hero() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
-        style={{ animationDelay: "1s" }}
+        style={{ animationDelay: '1s' }}
       />
 
       {/* Main Content - takes up most of the space */}
@@ -71,7 +73,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1, ease: 'easeOut' }}
             className="max-w-4xl mx-auto"
           >
             <motion.h1
@@ -80,7 +82,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Hi, I'm{" "}
+              Hi, I'm{' '}
               <span className="bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
                 Bhavin Prajapati
               </span>
@@ -108,8 +110,9 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              3+ Years Experience crafting intuitive, scalable user interfaces
-              with modern technologies and best practices.
+              {getExperienceYears()}+ Years Experience crafting intuitive,
+              scalable user interfaces with modern technologies and best
+              practices.
             </motion.p>
 
             {/* Modern Action Buttons */}
@@ -140,7 +143,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => scrollToSection("contact")}
+                  onClick={() => scrollToSection('contact')}
                   className="px-8 py-6 text-lg font-medium rounded-xl border-2 border-primary/30 hover:border-primary/60 hover:bg-primary/10 backdrop-blur-sm transition-all duration-300 group"
                 >
                   <Mail className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
@@ -178,23 +181,23 @@ export function Hero() {
             </motion.div>
           </motion.div>
         </div>
-      {/* Scroll Indicator - positioned in the bottom section */}
-      <div className="h-20 flex items-center justify-center absolute bottom-0  z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
+        {/* Scroll Indicator - positioned in the bottom section */}
+        <div className="h-20 flex items-center justify-center absolute bottom-0  z-10">
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="cursor-pointer p-2"
-            onClick={() => scrollToSection("about")}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <ChevronDown className="h-8 w-8 text-muted-foreground hover:text-primary transition-colors" />
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="cursor-pointer p-2"
+              onClick={() => scrollToSection('about')}
+            >
+              <ChevronDown className="h-8 w-8 text-muted-foreground hover:text-primary transition-colors" />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </div>
+        </div>
       </div>
     </section>
   );
