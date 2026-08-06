@@ -45,7 +45,7 @@ export function Hero() {
 
   const resumeDownloadHandler = () => {
     window.open(
-      'https://drive.google.com/file/d/1nh6g0uoIHtryL4EgkUFzWXL_beDdFX8-/view?usp=sharing',
+      'https://drive.google.com/file/d/19R7ChK64OJzqw90yLXG6jdcd6xTSYfRt/view?usp=sharing',
       '_blank',
       'noopener,noreferrer',
     );
