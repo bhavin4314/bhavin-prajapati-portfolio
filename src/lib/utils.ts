@@ -22,33 +22,26 @@ export function getExperienceYears(): number {
 }
 
 /**
+ * Whole years of experience since April 2022, as a label such as "4+".
+ * Use this anywhere the site states years of experience.
+ */
+export function getExperienceLabel(): string {
+  return `${Math.floor(getExperienceYears())}+`;
+}
+
+/**
  * Updates description and Open Graph/Twitter meta tags dynamically in the DOM
  * with the correct experience years.
  */
 export function updateMetaTags() {
   if (typeof document === 'undefined') return;
-  const experience = getExperienceYears();
-  
-  const descElements = [
-    {
-      selector: 'meta[name="description"]',
-      template: `Bhavin Prajapati - Frontend Developer with ${experience}+ years of experience in React, Next.js, Tailwind, and modern web technologies. Explore my portfolio, projects, and skills.`
-    },
-    {
-      selector: 'meta[property="og:description"]',
-      template: `Frontend Developer with ${experience}+ years of experience in React, Next.js, Tailwind, and modern web technologies.`
-    },
-    {
-      selector: 'meta[name="twitter:description"]',
-      template: `Frontend Developer with ${experience}+ years of experience in React, Next.js, Tailwind, and modern web technologies.`
-    }
-  ];
+    const description = `Full-stack developer with ${getExperienceLabel()} years building web apps with React, Next.js, Node.js, Express, PostgreSQL and MongoDB. Based in Ahmedabad, India.`;
 
-  descElements.forEach(({ selector, template }) => {
-    const element = document.querySelector(selector);
-    if (element) {
-      element.setAttribute('content', template);
-    }
+  [
+    'meta[name="description"]',
+    'meta[property="og:description"]',
+    'meta[name="twitter:description"]',
+  ].forEach((selector) => {
+    document.querySelector(selector)?.setAttribute('content', description);
   });
 }
-
